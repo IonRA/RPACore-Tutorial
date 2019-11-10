@@ -25,7 +25,7 @@ namespace RpaSolutionAPI.Controllers
         //the attributes like [HttpPost("<actionName>")], specifies the http verb to wich the action shall respond
         //and the calling name from Uri
         [HttpPost("CreateOpenApp")]
-        public ActionResult CreateOpenApp(OpenApp openApp)
+        public async Task<IActionResult> CreateOpenApp(OpenApp openApp)
         {
             //check if the assigned object respects all the established requirements (i.e if it has the name of the app
             //it tries to open, and so on...)
@@ -33,29 +33,29 @@ namespace RpaSolutionAPI.Controllers
                 return BadRequest("Invalid data");
 
             //_openAppManager it's used to call library's methods to do the dirty work
-            _openAppManager.Create(openApp);
+            await _openAppManager.Create(openApp);
 
             return Ok();
         }
 
         [HttpPut("AlterOpenApp")]
-        public ActionResult AlterOpenApp(int id, OpenApp openApp)
+        public async Task<IActionResult> AlterOpenApp(int id, OpenApp openApp)
         {
             if (ModelState.IsValid == false)
                 return BadRequest("Invalid model");
 
             //Alter method returns the altered object if found otherwse it returns null
-            if (_openAppManager.Alter(id, openApp) == null)
+            if (await _openAppManager.Alter(id, openApp) == null)
                 return NotFound();
 
             return Ok();
         }
 
         [HttpGet("GetOpenApp")]
-        public ActionResult GetOpenApp(int id)
+        public async Task<IActionResult> GetOpenApp(int id)
         {
             //retrive OpenApp object from Db, if exists
-            var component = _openAppManager.Get(id);
+            var component = await _openAppManager.Get(id);
 
             if (component == null)
                 return NotFound();
@@ -64,12 +64,12 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteOpenApp")]
-        public ActionResult DeleteOpenApp(int id)
+        public async Task<IActionResult> DeleteOpenApp(int id)
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
 
-            _openAppManager.Delete(id);
+            await _openAppManager.Delete(id);
 
             return Ok();
         }
