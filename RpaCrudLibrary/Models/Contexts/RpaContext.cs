@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RpaCrudLibrary.Models.Contexts
 {
-    class RpaContext : DbContext
+    public class RpaContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -18,6 +18,12 @@ namespace RpaCrudLibrary.Models.Contexts
         {
         }
 
-        public DbSet<OpenApp> openComponents { get; set; }
+        public DbSet<OpenApp> OpenAppComponents { get; set; }
+
+        public DbSet<OpenApp> WriteAppComponents { get; set; }
+
+        public DbSet<OpenApp> SaveAppComponents { get; set; }
+
+        public DbSet<OpenApp> CloseAppComponents { get; set; }
     }
 }

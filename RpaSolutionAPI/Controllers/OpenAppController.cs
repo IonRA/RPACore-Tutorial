@@ -9,7 +9,7 @@ using RpaCrudLibrary.Models;
 
 namespace RpaSolutionAPI.Controllers
 {
-    [Route("api/openapp")]
+    [Route("rpa-solution-api/[controller]")]
     [ApiController]
     public class OpenAppController : ControllerBase
     {
@@ -25,7 +25,7 @@ namespace RpaSolutionAPI.Controllers
         //the attributes like [HttpPost("<actionName>")], specifies the http verb to wich the action shall respond
         //and the calling name from Uri
         [HttpPost("CreateOpenApp")]
-        public async Task<IActionResult> CreateOpenApp(OpenApp openApp)
+        public async Task<IActionResult> CreateOpenAppAsync(OpenApp openApp)
         {
             //check if the assigned object respects all the established requirements (i.e if it has the name of the app
             //it tries to open, and so on...)
@@ -33,29 +33,29 @@ namespace RpaSolutionAPI.Controllers
                 return BadRequest("Invalid data");
 
             //_openAppManager it's used to call library's methods to do the dirty work
-            await _openAppManager.Create(openApp);
+            await _openAppManager.CreateAsync(openApp);
 
             return Ok();
         }
 
         [HttpPut("AlterOpenApp")]
-        public async Task<IActionResult> AlterOpenApp(int id, OpenApp openApp)
+        public async Task<IActionResult> AlterOpenAppAsync(OpenApp openApp)
         {
             if (ModelState.IsValid == false)
                 return BadRequest("Invalid model");
 
             //Alter method returns the altered object if found otherwse it returns null
-            if (await _openAppManager.Alter(id, openApp) == null)
+            if (await _openAppManager.AlterAsync(openApp) == null)
                 return NotFound();
 
             return Ok();
         }
 
         [HttpGet("GetOpenApp")]
-        public async Task<IActionResult> GetOpenApp(int id)
+        public async Task<IActionResult> GetOpenAppAsync(int id)
         {
             //retrive OpenApp object from Db, if exists
-            var component = await _openAppManager.Get(id);
+            var component = await _openAppManager.GetAsync(id);
 
             if (component == null)
                 return NotFound();
@@ -64,12 +64,12 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteOpenApp")]
-        public async Task<IActionResult> DeleteOpenApp(int id)
+        public async Task<IActionResult> DeleteOpenAppAsync(int id)
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
 
-            await _openAppManager.Delete(id);
+            await _openAppManager.DeleteAsync(id);
 
             return Ok();
         }
