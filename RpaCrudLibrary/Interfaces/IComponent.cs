@@ -6,6 +6,6 @@ namespace RpaCrudLibrary.Interfaces
 {
     interface IComponent
     {
-       
+       public int Id { get; set; }
     }
 }

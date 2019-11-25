@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RpaCrudLibrary.Interfaces;
+using RpaCrudLibrary.Interfaces.IManagers;
 using RpaCrudLibrary.Models;
 
 namespace RpaSolutionAPI.Controllers
@@ -16,7 +17,6 @@ namespace RpaSolutionAPI.Controllers
         //readonly fields have to be assigned before constructor exits, after that they can't change their value
         //_openAppManager is a service assigned in constructor by DI
         private readonly IOpenAppManager _openAppManager;
-
 
         //the cosntructor is written in expression-bodied form (similar to lambda expressions)
         //openAppManager is instanceated by DI
@@ -52,10 +52,22 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpGet("GetOpenApp")]
-        public async Task<IActionResult> GetOpenAppAsync(int id)
+        public async Task<IActionResult> GetOpenAppAsync(Expression<Func<OpenApp, bool>> expression)
         {
             //retrive OpenApp object from Db, if exists
-            var component = await _openAppManager.GetAsync(id);
+            var component = await _openAppManager.GetAsync(expression);
+
+            if (component == null)
+                return NotFound();
+
+            return Ok(component);
+        }
+
+        [HttpGet("GetAllOpenApps")]
+        public async Task<IActionResult> GetAllOpenAppAsync()
+        {
+            //retrive all OpenApp objects from Db, if exists
+            var component = await _openAppManager.GetAllAsync();
 
             if (component == null)
                 return NotFound();

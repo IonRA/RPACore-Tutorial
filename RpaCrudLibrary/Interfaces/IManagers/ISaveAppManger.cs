@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RpaCrudLibrary.Interfaces
+namespace RpaCrudLibrary.Interfaces.IManagers
 {
-    interface ICloseAppManager
+    interface ISaveAppManger
     {
     }
 }

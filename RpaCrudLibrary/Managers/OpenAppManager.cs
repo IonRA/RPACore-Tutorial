@@ -1,67 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using RpaCrudLibrary.Interfaces;
+using RpaCrudLibrary.Interfaces.IManagers;
+using RpaCrudLibrary.Interfaces.IRepositories;
 using RpaCrudLibrary.Models;
-using RpaCrudLibrary.Models.Contexts;
 
 namespace RpaCrudLibrary.Managers
 {
     public class OpenAppManager: IOpenAppManager
     {
-        private readonly RpaContext _rpaContext;
+        //repository hides bussines logic and it's used to do CRUD operations
+        private readonly IOpenAppRepository _openAppRepository;
 
-        public OpenAppManager(RpaContext rpaContext)
+        //openAppRepository is assigned via API's DI
+        public OpenAppManager(IOpenAppRepository openAppRepository)
         {
-            _rpaContext = rpaContext;
+            _openAppRepository = openAppRepository;
         }
-        public async Task CreateAsync(OpenApp openApp)
+        public async Task<OpenApp> CreateAsync(OpenApp openApp)
         {
-            if (openApp != null)
-            {
-                await _rpaContext.OpenAppComponents.AddAsync(openApp);
-                await _rpaContext.SaveChangesAsync();
-            }
+            return await _openAppRepository.CreateAsync(openApp);
         }
 
         public async Task<OpenApp> AlterAsync(OpenApp openApp)
         {
-            var existingComponent = _rpaContext.OpenAppComponents.
-                                    Where(c => c.Id == openApp.Id).
-                                    FirstOrDefault<OpenApp>();
-
-            if (existingComponent != null)
-            {
-                existingComponent.AppName = openApp.AppName;
-                existingComponent.Parameters = openApp.Parameters;
-                existingComponent.IdSolution = openApp.IdSolution;
-
-                await _rpaContext.SaveChangesAsync();
-
-                return openApp;
-            }
-
-            return null;
+            return await _openAppRepository.UpdateAsync(openApp);
         }
 
-        public async Task<OpenApp> GetAsync(int id)
+        public async Task<OpenApp> GetAsync(Expression<Func<OpenApp, bool>> expression)
         {
-            var component = await Task.Factory.StartNew(() =>
-                            _rpaContext.OpenAppComponents.Where((c) => c.Id == id).FirstOrDefault()
-                            );
+            return await _openAppRepository.GetOneByConditionAsync(expression);
+        }
 
-            return component;
+        public async Task<List<OpenApp>> GetAllAsync()
+        {
+            return await _openAppRepository.GetAllAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var component = _rpaContext.OpenAppComponents.Where((c) => c.Id == id).FirstOrDefault();
-
-            _rpaContext.Remove<OpenApp>(component);
-
-            await _rpaContext.SaveChangesAsync();
+            await _openAppRepository.DeleteAsync(id);
         }
     }
 }

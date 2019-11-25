@@ -1,14 +1,9 @@
-﻿using RpaCrudLibrary.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace RpaCrudLibrary.Models
 {
-    public class OpenApp: IComponent
+    public class OpenApp: Component
     {
-        public int Id { get; private set; }
-
         public int IdSolution { get; set; }
 
         public string AppName { get; set; }
@@ -16,3 +11,4 @@ namespace RpaCrudLibrary.Models
         public IList<string> Parameters { get; set; }
     }
 }
+

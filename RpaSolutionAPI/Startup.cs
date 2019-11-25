@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using RpaCrudLibrary.Interfaces;
+using RpaCrudLibrary.Interfaces.IManagers;
+using RpaCrudLibrary.Interfaces.IRepositories;
 using RpaCrudLibrary.Managers;
 using RpaCrudLibrary.Models.Contexts;
+using RpaCrudLibrary.Repositories;
 
 namespace RpaSolutionAPI
 {
@@ -32,6 +27,10 @@ namespace RpaSolutionAPI
 
             services.AddTransient<IOpenAppManager, OpenAppManager>();
             //.... the others managers
+
+            services.AddTransient<IOpenAppRepository, OpenAppRepository>();
+            //.... the others repositories
+
             services.AddTransient<RpaContext>();
         }
 

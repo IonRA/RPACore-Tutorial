@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RpaCrudLibrary.Models
 {
-    class SaveApp
+    class SaveApp: Component
     {
     }
 }
