@@ -8,7 +8,7 @@ namespace RpaCrudLibrary.Models.Contexts
         {
             optionsBuilder
                 .UseSqlServer(@"Data Source = ACASA\SQLEXPRESS; Initial Catalog = RpaPrototype;
-                              Integrated Security = true; User ID = ion; Password = ion97fam4000");
+                              Integrated Security = true; User ID = myName; Password = myPassword");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
