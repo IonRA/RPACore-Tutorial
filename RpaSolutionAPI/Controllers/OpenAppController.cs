@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RpaCrudLibrary.Interfaces.IManagers;
-using RpaCrudLibrary.Models;
+using Services.Rpa.Domain.Interfaces.IManagers;
+using Services.Rpa.Domain.Models;
 
 namespace RpaSolutionAPI.Controllers
 {
@@ -45,7 +42,7 @@ namespace RpaSolutionAPI.Controllers
                 return BadRequest("Invalid model");
 
             //Alter method returns the altered object if found otherwse it returns null
-            if (await _openAppManager.AlterAsync(openApp) == null)
+            if (await _openAppManager.UpdateAsync(openApp) == null)
                 return NotFound();
 
             return Ok();
