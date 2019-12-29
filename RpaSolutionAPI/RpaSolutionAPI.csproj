@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RpaCrudLibrary\RpaCrudLibrary.csproj" />
+    <ProjectReference Include="..\Rpa.Domain\Rpa.Domain.csproj" />
+    <ProjectReference Include="..\Rpa.Infrastructure\Rpa.Infrastructure.csproj" />
+    <ProjectReference Include="..\Rpa.MetadataDbContext\Rpa.MetadataDbContext.csproj" />
   </ItemGroup>
 
 </Project>

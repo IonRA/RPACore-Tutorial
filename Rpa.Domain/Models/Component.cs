@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using RpaCrudLibrary.Interfaces;
+using Services.Rpa.Domain.Interfaces;
 
-namespace RpaCrudLibrary.Models
+namespace Services.Rpa.Domain.Models
 {
     abstract public class Component: IComponent
     {

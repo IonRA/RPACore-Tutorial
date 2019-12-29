@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Contexts\**" />
+    <EmbeddedResource Remove="Models\Contexts\**" />
+    <None Remove="Models\Contexts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+
+</Project>

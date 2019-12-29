@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RpaCrudLibrary.Interfaces
+namespace Services.Rpa.Domain.Interfaces
 {
     interface IComponent
     {

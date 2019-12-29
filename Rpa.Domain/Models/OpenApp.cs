@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RpaCrudLibrary.Models
+namespace Services.Rpa.Domain.Models
 {
     public class OpenApp: Component
     {

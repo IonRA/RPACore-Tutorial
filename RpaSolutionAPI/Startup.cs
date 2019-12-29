@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RpaCrudLibrary.Interfaces.IManagers;
-using RpaCrudLibrary.Interfaces.IRepositories;
-using RpaCrudLibrary.Managers;
-using RpaCrudLibrary.Models.Contexts;
-using RpaCrudLibrary.Repositories;
+using Services.Rpa.Domain.Interfaces.IManagers;
+using Services.Rpa.Domain.Interfaces.IRepositories;
+using Services.Rpa.Infrastructure.Managers;
+using Services.Rpa.Infrastructure.Repositories;
+using Services.Rpa.MetadataDbContext;
 
 namespace RpaSolutionAPI
 {
