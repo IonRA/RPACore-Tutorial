@@ -7,6 +7,8 @@ namespace Services.Rpa.Domain.Models
     {
         public string AppName { get; set; }
 
+        public bool UseShell { get; set; }
+
     }
 }
 

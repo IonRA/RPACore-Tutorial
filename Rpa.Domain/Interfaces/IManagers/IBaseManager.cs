@@ -16,5 +16,7 @@ namespace Services.Rpa.Domain.Interfaces.IManagers
         Task DeleteAsync(int id);
 
         Task<List<TEntity>> GetAllAsync();
+
+        Task Execute(TEntity entity);
     }
 }

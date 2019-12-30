@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Rpa.Infrastructure.Managers
+namespace Services.Rpa.Infrastructure.Managers
 {
-    public class BaseManager<TEntity, TRepository> : IBaseManager<TEntity>
+    public abstract class BaseManager<TEntity, TRepository> : IBaseManager<TEntity>
        where TEntity : Component
        where TRepository : IBaseRepository<TEntity>
     {
@@ -51,6 +51,8 @@ namespace Rpa.Infrastructure.Managers
 
             return entities;
         }
+
+        public abstract Task Execute(TEntity entity);
 
     }
 }
