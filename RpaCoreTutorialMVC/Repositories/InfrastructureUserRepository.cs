@@ -7,16 +7,16 @@ namespace RpaCoreTutorialMVC.Repositories
 {
     public class UserRepository
     {
-        private IUserDataContext _userDataContext;
+        //private IUserDataContext _userDataContext;
 
-        public UserRepository(IUserDataContext userDataContext)
-        {
-            this._userDataContext = userDataContext;
-        }
+        //public UserRepository(IUserDataContext userDataContext)
+        //{
+        //    this._userDataContext = userDataContext;
+        //}
 
-        static UserRepository()
-        {
-            Users = n
-        }
+        //static UserRepository()
+        //{
+        //    Users = n
+        //}
     }
 }
