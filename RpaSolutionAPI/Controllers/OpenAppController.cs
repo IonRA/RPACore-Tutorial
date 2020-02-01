@@ -30,9 +30,16 @@ namespace RpaSolutionAPI.Controllers
                 return BadRequest("Invalid data");
 
             //_openAppManager it's used to call library's methods to do the dirty work
-            await _openAppManager.CreateAsync(openApp);
+            try
+            {
+                await _openAppManager.CreateAsync(openApp);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut("AlterOpenApp")]
@@ -42,34 +49,55 @@ namespace RpaSolutionAPI.Controllers
                 return BadRequest("Invalid model");
 
             //Alter method returns the altered object if found otherwse it returns null
-            if (await _openAppManager.UpdateAsync(openApp) == null)
-                return NotFound();
+            try
+            {
+                if (await _openAppManager.UpdateAsync(openApp) == null)
+                    return NotFound();
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("GetOpenApp")]
         public async Task<IActionResult> GetOpenAppAsync(Expression<Func<OpenApp, bool>> expression)
         {
             //retrive OpenApp object from Db, if exists
-            var component = await _openAppManager.GetAsync(expression);
+            try
+            {
+                var component = await _openAppManager.GetAsync(expression);
 
-            if (component == null)
-                return NotFound();
+                if (component == null)
+                    return NotFound();
 
-            return Ok(component);
+                return Ok(component);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("GetAllOpenApps")]
         public async Task<IActionResult> GetAllOpenAppAsync()
         {
             //retrive all OpenApp objects from Db, if exists
-            var component = await _openAppManager.GetAllAsync();
+            try
+            {
+                var components = await _openAppManager.GetAllAsync();
 
-            if (component == null)
-                return NotFound();
+                if (components == null)
+                    return NotFound();
 
-            return Ok(component);
+                return Ok(components);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete("DeleteOpenApp")]
@@ -78,9 +106,16 @@ namespace RpaSolutionAPI.Controllers
             if (id <= 0)
                 return BadRequest("Not a valid id");
 
-            await _openAppManager.DeleteAsync(id);
+            try
+            {
+                await _openAppManager.DeleteAsync(id);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
