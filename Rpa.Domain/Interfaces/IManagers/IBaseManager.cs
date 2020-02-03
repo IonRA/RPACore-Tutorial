@@ -13,6 +13,8 @@ namespace Services.Rpa.Domain.Interfaces.IManagers
 
         Task<TEntity> CreateAsync(TEntity entity);
 
+        Task<TEntity> FindByIdAsync(int id);
+
         Task DeleteAsync(int id);
 
         Task<List<TEntity>> GetAllAsync();
