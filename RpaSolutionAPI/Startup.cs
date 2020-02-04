@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Services.Rpa.Domain.Interfaces.IManagers;
 using Services.Rpa.Domain.Interfaces.IRepositories;
 using Services.Rpa.Infrastructure.Managers;
@@ -24,6 +25,10 @@ namespace RpaSolutionAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RPA API", Version = "v1" });
+            });
 
             services.AddTransient<IOpenAppManager, OpenAppManager>();
             //.... the others managers
@@ -41,6 +46,13 @@ namespace RpaSolutionAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPA API V1");
+            });
 
             app.UseHttpsRedirection();
 
