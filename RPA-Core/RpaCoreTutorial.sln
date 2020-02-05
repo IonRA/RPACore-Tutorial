@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpaCoreTutorialMVC", "RpaCoreTutorialMVC\RpaCoreTutorialMVC.csproj", "{10AAB975-0540-448A-AE8B-D44618A107A2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{E7044F37-FB40-426F-8051-522F8EED96A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpaSolutionAPI", "RpaSolutionAPI\RpaSolutionAPI.csproj", "{8F9CAE22-242E-47E3-BA04-E33E7F266A0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4F64BCDC-4A73-4AE5-977C-EC2660C3CF51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpa.Domain", "Rpa.Domain\Rpa.Domain.csproj", "{13451672-5E89-4A3F-87AF-22064BAF0F83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpa.Domain", "Rpa.Domain\Rpa.Domain.csproj", "{13451672-5E89-4A3F-87AF-22064BAF0F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpa.Infrastructure", "Rpa.Infrastructure\Rpa.Infrastructure.csproj", "{738D5E9C-54D1-45DD-9020-34FAABF01651}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpa.Infrastructure", "Rpa.Infrastructure\Rpa.Infrastructure.csproj", "{738D5E9C-54D1-45DD-9020-34FAABF01651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpa.MetadataDbContext", "Rpa.MetadataDbContext\Rpa.MetadataDbContext.csproj", "{72760F81-3679-48E5-8D21-2836B6F4E439}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpa.MetadataDbContext", "Rpa.MetadataDbContext\Rpa.MetadataDbContext.csproj", "{72760F81-3679-48E5-8D21-2836B6F4E439}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{10AAB975-0540-448A-AE8B-D44618A107A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10AAB975-0540-448A-AE8B-D44618A107A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10AAB975-0540-448A-AE8B-D44618A107A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10AAB975-0540-448A-AE8B-D44618A107A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F9CAE22-242E-47E3-BA04-E33E7F266A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F9CAE22-242E-47E3-BA04-E33E7F266A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F9CAE22-242E-47E3-BA04-E33E7F266A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
