@@ -61,19 +61,13 @@ namespace RpaSolutionAPI.Controllers
         [HttpDelete("DeleteWriteApp")]
         public async Task<IActionResult> DeleteWriteAppAsync(int id)
         {
-            if (id < 0)
-            {
-                return BadRequest("Not a valid Id");
-            }
+            if (id <= 0)
+                return BadRequest("Not a valid id");
 
             try
             {
-                if (await _writeAppManger.FindByIdAsync(id) == null)
-                {
-                    return NotFound();
-                }
-
                 await _writeAppManger.DeleteAsync(id);
+
                 return Ok();
             }
             catch (Exception ex)
