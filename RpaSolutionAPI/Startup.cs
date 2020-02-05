@@ -52,6 +52,7 @@ namespace RpaSolutionAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPA API V1");
+                c.RoutePrefix = "swagger/ui";
             });
 
             app.UseHttpsRedirection();
