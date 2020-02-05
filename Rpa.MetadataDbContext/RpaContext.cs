@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Services.Rpa.Domain.Models;
 
 namespace Services.Rpa.MetadataDbContext
 {
-    public class RpaContext : DbContext
+    public class RpaContext : IdentityDbContext
     {
 
         public RpaContext()
@@ -21,7 +22,7 @@ namespace Services.Rpa.MetadataDbContext
                 optionsBuilder
                //.UseSqlServer(@"Data Source = ACASA\SQLEXPRESS; Initial Catalog = RpaPrototype;
                //               Integrated Security = true; User ID = myName; Password = myPassword");
-               .UseSqlServer(@"Data Source = DESKTOP-41L3N69\SQLEXPRESS; Initial Catalog = RpaPrototype;
+               .UseSqlServer(@"Data Source = DESKTOP-W\SQLEXPRESS; Initial Catalog = RpaPrototype;
                               Integrated Security = true; User ID = myName; Password = myPassword");
             }
 
@@ -30,6 +31,7 @@ namespace Services.Rpa.MetadataDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //add specific data binding for your models, if needed
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<OpenApp> OpenAppComponents { get; set; }
