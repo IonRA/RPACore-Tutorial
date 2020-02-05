@@ -40,16 +40,14 @@ namespace RpaSolutionAPI.Controllers
         public async Task<IActionResult> UpdateSaveAppAsync(SaveApp saveApp)
         {
             if (ModelState.IsValid == false)
-            {
                 return BadRequest("Invalid model");
-            }
 
+            //Alter method returns the altered object if found otherwse it returns null
             try
             {
                 if (await _saveAppManager.UpdateAsync(saveApp) == null)
-                {
                     return NotFound();
-                }
+
                 return Ok();
             }
             catch (Exception ex)
@@ -61,19 +59,13 @@ namespace RpaSolutionAPI.Controllers
         [HttpDelete("DeleteSaveApp")]
         public async Task<IActionResult> DeleteCloseAppAsync(int id)
         {
-            if (id < 0)
-            {
-                return BadRequest("Not a valid Id");
-            }
+            if (id <= 0)
+                return BadRequest("Not a valid id");
 
             try
             {
-                if (await _saveAppManager.FindByIdAsync(id) == null)
-                {
-                    return NotFound();
-                }
-
                 await _saveAppManager.DeleteAsync(id);
+
                 return Ok();
             }
             catch (Exception ex)

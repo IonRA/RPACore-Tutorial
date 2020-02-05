@@ -38,16 +38,14 @@ namespace RpaSolutionAPI.Controllers
         public async Task<IActionResult> UpdateCloseAppAsync(CloseApp closeApp)
         {
             if (ModelState.IsValid == false)
-            {
                 return BadRequest("Invalid model");
-            }
 
+            //Alter method returns the altered object if found otherwse it returns null
             try
             {
-                if (await _closeAppManager.UpdateAsync(closeApp) ==  null)
-                {
+                if (await _closeAppManager.UpdateAsync(closeApp) == null)
                     return NotFound();
-                }
+
                 return Ok();
             }
             catch (Exception ex)
@@ -59,19 +57,13 @@ namespace RpaSolutionAPI.Controllers
         [HttpDelete("DeleteCloseApp")]
         public async Task<IActionResult> DeleteCloseAppAsync(int id)
         {
-            if (id < 0)
-            {
-                return BadRequest("Not a valid Id");
-            }
-            
+            if (id <= 0)
+                return BadRequest("Not a valid id");
+
             try
             {
-                if( await _closeAppManager.FindByIdAsync(id) == null)
-                {
-                    return NotFound();
-                }
-
                 await _closeAppManager.DeleteAsync(id);
+
                 return Ok();
             }
             catch (Exception ex)
