@@ -6,5 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RPA-Core-Web';
+  isLogged = false;
+  username: string;
+  toggleRegister = false;
+
+  onRegisterComplete() {
+    this.toggleRegister = false;
+  }
+
+  onLoginComplete(event) {
+    this.isLogged = true;
+    this.username = event.username;
+  }
+
+  logout() {
+    this.username = null;
+    this.isLogged = false;
+  }
 }
