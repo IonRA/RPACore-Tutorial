@@ -1,5 +1,4 @@
 <div class="container">
-
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>RPA Core</span>
@@ -13,13 +12,14 @@
         <button *ngIf="isLogged"
                 mat-button>
           <mat-icon>account_circle</mat-icon>
-          <span>{{username}}</span>
+          <span>{{loggedUser.username}}</span>
         </button>
         <button *ngIf="!isLogged"
                 mat-button
-                (click)="toggleRegister = !toggleRegister">
-          <span>{{toggleRegister ? 'Login' : 'Register'}}</span>
+                (click)="router.navigate(['/login'])">
+          <span>Login</span>
         </button>
+
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -31,22 +31,11 @@
             <span>Logout</span>
           </button>
         </mat-menu>
+
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-
-  <div *ngIf="isLogged">
-    RPACore Dashboard
-  </div>
-
-  <div *ngIf="!isLogged">
-    <app-login *ngIf="!toggleRegister"
-               (loginComplete)="onLoginComplete($event)">
-    </app-login>
-
-    <app-register *ngIf="toggleRegister"
-                  (registerComplete)="onRegisterComplete()">
-    </app-register>
-  </div>
 </div>
+
+<router-outlet></router-outlet>
 

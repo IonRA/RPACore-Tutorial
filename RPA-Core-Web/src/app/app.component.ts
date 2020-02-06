@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {UserService} from '../service/UserService';
+import {User} from '../model/user.model';
 
 @Component({
   selector: 'app-root',
@@ -7,20 +11,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isLogged = false;
-  username: string;
-  toggleRegister = false;
 
-  onRegisterComplete() {
-    this.toggleRegister = false;
-  }
+  loggedUser: User;
+  subscriptionUser;
 
-  onLoginComplete(event) {
-    this.isLogged = true;
-    this.username = event.username;
+  constructor(private router: Router,
+              private userService: UserService) {
+    this.subscriptionUser = this.userService.execChange.subscribe((value) => {
+      this.loggedUser = value;
+      this.isLogged = true;
+    });
   }
 
   logout() {
-    this.username = null;
+    this.userService.userChange(null);
     this.isLogged = false;
+    this.router.navigate(['/login']);
   }
 }
