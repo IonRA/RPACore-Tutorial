@@ -59,12 +59,7 @@ namespace RpaSolutionAPI.Controllers
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return Ok();
                 }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-                return BadRequest();
+                return BadRequest(result.Errors);
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,15 +8,14 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Output()
-  registerComplete = new EventEmitter();
 
   username: string;
   password: string;
   confirmPassword: string;
   showSpinner = false;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -29,9 +29,24 @@ export class RegisterComponent implements OnInit {
       confirmPassword: this.confirmPassword,
     };
     this.httpClient.post('https://localhost:44305/api/User/register', credentials)
-      .subscribe(response => {
-        console.log(response);
+      .toPromise()
+      .then(response => {
+        this.router.navigate(['/login']);
+      })
+      .catch(ex => {
+        if (!!ex.error.errors) {
+          Object.values(ex.error.errors).forEach((err: Array<string>, i) => {
+            err.forEach(errMessage => {
+              alert(errMessage);
+            });
+          });
+        } else {
+          ex.error.forEach(err => {
+            alert(err.description);
+          });
+        }
+        this.showSpinner = false;
       });
-    this.registerComplete.emit();
   }
+
 }

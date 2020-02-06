@@ -1,5 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {UserService} from '../../service/UserService';
+import {User} from '../../model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +11,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  @Output()
-  loginComplete = new EventEmitter();
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router,
+              private userService: UserService) {
   }
 
   username: string;
@@ -30,12 +32,21 @@ export class LoginComponent implements OnInit {
     };
     // TODO httpClient interceptor
     this.httpClient.post('https://localhost:44305/api/User', credentials)
-      .subscribe(response => {
+      .toPromise()
+      .then(response => {
         console.log(response);
+        const user: User = {
+          id: null,
+          username: this.username,
+          roles: [],
+        };
+        this.userService.userChange(user);
+        this.router.navigate(['']);
+      })
+      .catch(ex => {
+        alert(ex.error);
+        this.showSpinner = false;
       });
-    this.loginComplete.emit({
-      username: this.username
-    });
   }
 }
 
