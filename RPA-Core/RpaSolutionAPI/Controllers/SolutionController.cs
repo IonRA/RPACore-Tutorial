@@ -39,14 +39,11 @@ namespace RpaSolutionAPI.Controllers
 
             WriteApp write = new WriteApp() { ComponentProcess = _openAppManager.ComponentProcess };
 
-            do
-            {
-                write.Message = Console.ReadLine();
+            write.Message = "RPA Test";
 
-                await _writeAppManager.Execute(write);
-            } while (write.Message.Length > 0);
+            await _writeAppManager.Execute(write);
 
-            SaveApp save = new SaveApp() { Path = "aboslute path of location", Title = "It Works Baby!!" };
+            SaveApp save = new SaveApp() { Path = "C:\\Users\\Razvan\\Desktop", Title = "myfile" };
 
             await _saveAppManager.Execute(save);
 
