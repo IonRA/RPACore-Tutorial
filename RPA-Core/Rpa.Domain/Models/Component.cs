@@ -8,11 +8,11 @@ namespace Services.Rpa.Domain.Models
     {
         public int Id { get; set; }
 
-        public int position { get; set; }
+        public int Position { get; set; }
 
-        public int SolutionID { get; set; }
+        public int? SolutionID { get; set; }
 
-        public Solution Solution {get; set;}
+        public virtual Solution Solution {get; set;}
 
 
     }

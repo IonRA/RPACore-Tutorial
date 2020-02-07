@@ -22,7 +22,7 @@ namespace Services.Rpa.MetadataDbContext
                 optionsBuilder
                //.UseSqlServer(@"Data Source = ACASA\SQLEXPRESS; Initial Catalog = RpaPrototype;
                //               Integrated Security = true; User ID = myName; Password = myPassword");
-               .UseSqlServer(@"Data Source = DESKTOP-W\SQLEXPRESS; Initial Catalog = RpaPrototype;
+               .UseSqlServer(@"Data Source = DESKTOP-41L3N69\SQLEXPRESS; Initial Catalog = RpaPrototype;
                               Integrated Security = true; User ID = myName; Password = myPassword");
             }
 

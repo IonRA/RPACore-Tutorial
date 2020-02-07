@@ -11,6 +11,5 @@ namespace Services.Rpa.Domain.Models
         [NotMapped]
         public Process ComponentProcess { get; set; }
 
-        public int PID { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Services.Rpa.Domain.Models;
 using Services.Rpa.Domain.Interfaces.IManagers;
-using Services.Rpa.Infrastructure.Managers;
 using Services.Rpa.Infrastructure.Repositories;
 using Services.Rpa.Domain.Interfaces.IRepositories;
 using System.Threading.Tasks;
@@ -19,7 +18,7 @@ namespace Services.Rpa.Infrastructure.Managers
         public override async Task Execute(Solution solution)
         {
             
-            var orderedComponents = solution.Components.OrderBy(c => c.position).ToList();
+            var orderedComponents = solution.Components.OrderBy(c => c.Position).ToList();
             RpaContext rpaCtxt = new RpaContext();
             OpenAppManager openMan = new OpenAppManager(new OpenAppRepository(rpaCtxt));
             WriteAppManager writeMan = new WriteAppManager(new WriteAppRepository(rpaCtxt));
