@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Services.Rpa.Infrastructure.Repositories
 {
-    class SaveAppRepository : BaseRepository<SaveApp>, ISaveAppRepository
+    public class SaveAppRepository : BaseRepository<SaveApp>, ISaveAppRepository
     {
         public SaveAppRepository(RpaContext rpaContext): base(rpaContext)
         {

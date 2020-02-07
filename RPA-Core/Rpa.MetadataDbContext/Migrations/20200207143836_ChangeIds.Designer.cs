@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Services.Rpa.MetadataDbContext;
 
 namespace Rpa.MetadataDbContext.Migrations
 {
     [DbContext(typeof(RpaContext))]
-    partial class RpaContextModelSnapshot : ModelSnapshot
+    [Migration("20200207143836_ChangeIds")]
+    partial class ChangeIds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

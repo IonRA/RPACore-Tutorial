@@ -40,7 +40,7 @@ namespace Services.Rpa.Infrastructure.Managers
             return result;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _repo.DeleteAsync(id);
         }

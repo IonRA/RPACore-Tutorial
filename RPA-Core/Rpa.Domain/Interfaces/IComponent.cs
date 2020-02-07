@@ -7,7 +7,7 @@ namespace Services.Rpa.Domain.Interfaces
 {
     interface IComponent
     {
-        int Id { get; set; }
+        Guid ComponentId { get; set; }
 
         int IdSolution { get; set; }
 

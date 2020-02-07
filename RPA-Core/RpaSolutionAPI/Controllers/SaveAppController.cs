@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rpa.Domain.Models;
 using Services.Rpa.Domain.Interfaces.IManagers;
 using Services.Rpa.Domain.Models;
 
@@ -18,7 +19,7 @@ namespace RpaSolutionAPI.Controllers
         public SaveAppController(ISaveAppManager saveAppManager) => _saveAppManager = saveAppManager;
 
         [HttpPost("CreateSaveApp")]
-        public async Task<IActionResult> CreateCloseAppAsync(SaveApp saveApp)
+        public async Task<IActionResult> CreateCloseAppAsync(SaveAppModel saveApp)
         {
             if (ModelState.IsValid == false)
             {
@@ -27,7 +28,8 @@ namespace RpaSolutionAPI.Controllers
 
             try
             {
-                await _saveAppManager.CreateAsync(saveApp);
+                SaveApp saveAppEntity = new SaveApp { IdSolution = saveApp.IdSolution, Path = saveApp.Path, Title = saveApp.Title };
+                await _saveAppManager.CreateAsync(saveAppEntity);
                 return Ok();
             }
             catch (Exception ex)
@@ -57,11 +59,8 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteSaveApp")]
-        public async Task<IActionResult> DeleteCloseAppAsync(int id)
+        public async Task<IActionResult> DeleteCloseAppAsync(Guid id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid id");
-
             try
             {
                 await _saveAppManager.DeleteAsync(id);

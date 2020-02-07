@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace Services.Rpa.Infrastructure.Managers
 {
-    class WriteAppManager : BaseManager<WriteApp, IWriteAppRepository>, IWriteAppManager
+    public class WriteAppManager : BaseManager<WriteApp, IWriteAppRepository>, IWriteAppManager
     {
         [DllImport("USER32.DLL")]
         static extern bool SetForegroundWindow(IntPtr windowHandler);

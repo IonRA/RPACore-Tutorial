@@ -16,6 +16,6 @@ namespace Services.Rpa.Domain.Interfaces.IRepositories
 
         Task<TEntity> UpdateAsync(TEntity entity);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

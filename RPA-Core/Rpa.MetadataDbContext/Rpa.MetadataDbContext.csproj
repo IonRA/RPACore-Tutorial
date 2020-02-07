@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Migrations\20200207143646_ChangeIds.cs" />
+    <Compile Remove="Migrations\20200207143646_ChangeIds.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

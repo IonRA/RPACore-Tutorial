@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Services.Rpa.Infrastructure.Repositories
 {
-    class CloseAppRepository : BaseRepository<CloseApp>, ICloseAppRepository
+    public class CloseAppRepository : BaseRepository<CloseApp>, ICloseAppRepository
     {
         public CloseAppRepository(RpaContext rpaContext): base(rpaContext)
         {

@@ -36,10 +36,14 @@ namespace RpaSolutionAPI
             });
 
             services.AddTransient<IOpenAppManager, OpenAppManager>();
-            //.... the others managers
+            services.AddTransient<ICloseAppManager, CloseAppManager>();
+            services.AddTransient<ISaveAppManager, SaveAppManager>();
+            services.AddTransient<IWriteAppManager, WriteAppManager>();
 
             services.AddTransient<IOpenAppRepository, OpenAppRepository>();
-            //.... the others repositories
+            services.AddTransient<ICloseAppRepository, CloseAppRepository>();
+            services.AddTransient<ISaveAppRepository, SaveAppRepository>();
+            services.AddTransient<IWriteAppRepository, WriteAppRepository>();
 
             services.AddTransient<RpaContext>();
 

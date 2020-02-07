@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Services.Rpa.Infrastructure.Repositories
 {
-    class WriteAppRepository : BaseRepository<WriteApp>, IWriteAppRepository
+    public class WriteAppRepository : BaseRepository<WriteApp>, IWriteAppRepository
     {
         public WriteAppRepository(RpaContext rpaContext): base(rpaContext)
         {

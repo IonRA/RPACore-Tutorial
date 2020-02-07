@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Rpa.Domain.Models;
 using Services.Rpa.Domain.Interfaces.IManagers;
 using Services.Rpa.Domain.Models;
 
@@ -22,7 +23,7 @@ namespace RpaSolutionAPI.Controllers
         //the attributes like [HttpPost("<actionName>")], specifies the http verb to wich the action shall respond
         //and the calling name from Uri
         [HttpPost("CreateOpenApp")]
-        public async Task<IActionResult> CreateOpenAppAsync(OpenApp openApp)
+        public async Task<IActionResult> CreateOpenAppAsync(OpenAppModel openApp)
         {
             //check if the assigned object respects all the established requirements (i.e if it has the name of the app
             //it tries to open, and so on...)
@@ -32,7 +33,9 @@ namespace RpaSolutionAPI.Controllers
             //_openAppManager it's used to call library's methods to do the dirty work
             try
             {
-                await _openAppManager.CreateAsync(openApp);
+                OpenApp openAppEntity = new OpenApp { AppName = openApp.AppName, UseShell = openApp.UseShell, IdSolution = openApp.IdSolution };
+
+                await _openAppManager.CreateAsync(openAppEntity);
 
                 return Ok();
             }
@@ -101,11 +104,8 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteOpenApp")]
-        public async Task<IActionResult> DeleteOpenAppAsync(int id)
+        public async Task<IActionResult> DeleteOpenAppAsync(Guid id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid id");
-
             try
             {
                 await _openAppManager.DeleteAsync(id);

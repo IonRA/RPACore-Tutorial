@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rpa.Domain.Models;
 using Services.Rpa.Domain.Interfaces.IManagers;
 using Services.Rpa.Domain.Models;
 
@@ -18,7 +19,7 @@ namespace RpaSolutionAPI.Controllers
         public WriteAppController(IWriteAppManager writeAppManager) => _writeAppManger = writeAppManager;
 
         [HttpPost("CreateWriteApp")]
-        public async Task<IActionResult> CreateWriteAppAsync(WriteApp writeApp)
+        public async Task<IActionResult> CreateWriteAppAsync(WriteAppModel writeApp)
         {
             if (ModelState.IsValid == false)
             {
@@ -27,7 +28,8 @@ namespace RpaSolutionAPI.Controllers
 
             try
             {
-                await _writeAppManger.CreateAsync(writeApp);
+                WriteApp writeAppEntity = new WriteApp { IdSolution = writeApp.IdSolution, Message = writeApp.Message, PID = writeApp.PID };
+                await _writeAppManger.CreateAsync(writeAppEntity);
                 return Ok(); 
             }
             catch (Exception ex)
@@ -59,11 +61,8 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteWriteApp")]
-        public async Task<IActionResult> DeleteWriteAppAsync(int id)
+        public async Task<IActionResult> DeleteWriteAppAsync(Guid id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid id");
-
             try
             {
                 await _writeAppManger.DeleteAsync(id);

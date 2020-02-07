@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Rpa.Domain.Models;
 using Services.Rpa.Domain.Interfaces.IManagers;
 using Services.Rpa.Domain.Models;
 
@@ -16,7 +17,7 @@ namespace RpaSolutionAPI.Controllers
         public CloseAppController(ICloseAppManager closeAppManager) => _closeAppManager = closeAppManager;
 
         [HttpPost("CreateCloseApp")]
-        public async Task<IActionResult> CreateCloseAppAsync(CloseApp closeApp)
+        public async Task<IActionResult> CreateCloseAppAsync(CloseAppModel closeApp)
         {
             if (ModelState.IsValid == false)
             {
@@ -25,7 +26,8 @@ namespace RpaSolutionAPI.Controllers
 
             try
             {
-                await _closeAppManager.CreateAsync(closeApp);
+                CloseApp closeAppEntity = new CloseApp { IdSolution = closeApp.IdSolution, PID = closeApp.PID };
+                await _closeAppManager.CreateAsync(closeAppEntity);
                 return Ok();
             }
             catch (Exception ex)
@@ -55,11 +57,8 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteCloseApp")]
-        public async Task<IActionResult> DeleteCloseAppAsync(int id)
+        public async Task<IActionResult> DeleteCloseAppAsync(Guid id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid id");
-
             try
             {
                 await _closeAppManager.DeleteAsync(id);

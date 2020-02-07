@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Services.Rpa.Infrastructure.Managers
 {
-    class SaveAppManager : BaseManager<SaveApp, ISaveAppRepository>, ISaveAppManager
+    public class SaveAppManager : BaseManager<SaveApp, ISaveAppRepository>, ISaveAppManager
     {
 
         [DllImport("USER32.DLL")]
