@@ -7,7 +7,7 @@ import {CommonModule} from '@angular/common';
 
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule
+  MatToolbarModule, MatMenuModule, MatIconModule, MatProgressSpinnerModule, MatCheckboxModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -17,6 +17,8 @@ import { AdminInterfaceComponent } from './admin-interface/admin-interface.compo
 import {AppRoutingModule} from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {UserService} from '../service/UserService';
+import { UserRoleEditComponent } from './admin-interface/user-role-edit.component';
+import {AuthGuardService} from '../service/AuthGuardService';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {UserService} from '../service/UserService';
     LoginComponent,
     RegisterComponent,
     AdminInterfaceComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserRoleEditComponent
   ],
   imports: [
     AppRoutingModule,
@@ -42,8 +45,9 @@ import {UserService} from '../service/UserService';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    MatCheckboxModule,
   ],
-  providers: [UserService],
+  providers: [UserService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

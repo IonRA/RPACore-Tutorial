@@ -14,12 +14,15 @@ namespace RpaSolutionAPI.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
 
         public UserController(UserManager<IdentityUser> userManager,
-                              SignInManager<IdentityUser> signInManager)
+                              SignInManager<IdentityUser> signInManager,
+                              RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
         }
 
         [HttpPost]
@@ -34,7 +37,16 @@ namespace RpaSolutionAPI.Controllers
 
             if (result.Succeeded)
             {
-                return Ok();
+                var user = await userManager.FindByEmailAsync(model.Email);
+                UserModel userModel = new UserModel { Id = user.Id, Username = user.UserName, Roles = new List<string>() };
+                foreach (var role in roleManager.Roles)
+                {
+                    if(await userManager.IsInRoleAsync(user, role.Name))
+                    {
+                        userModel.Roles.Add(role.Name);
+                    }
+                }
+                return Ok(userModel);
             }
 
             return BadRequest("Invalid Login credentials");
@@ -56,6 +68,7 @@ namespace RpaSolutionAPI.Controllers
 
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, "user");
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return Ok();
                 }

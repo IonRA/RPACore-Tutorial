@@ -1,7 +1,7 @@
 <div class="container">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>RPA Core</span>
+      <span style="cursor: pointer" (click)="router.navigate([''])">RPA Core</span>
       <span class="example-fill-remaining-space"></span>
       <span class="align-center"></span>
       <span class="example-spacer"></span>
@@ -29,6 +29,12 @@
           (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>
             <span>Logout</span>
+          </button>
+          <button *ngIf="!!loggedUser && loggedUser.roles.includes('Admin')"
+                  mat-menu-item
+                  (click)="router.navigate(['/admin'])">
+            <mat-icon>assignment</mat-icon>
+            <span>Admin</span>
           </button>
         </mat-menu>
 

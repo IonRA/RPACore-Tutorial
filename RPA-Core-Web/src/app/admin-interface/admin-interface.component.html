@@ -1,5 +1,15 @@
-<div>
-  <li *ngFor="let role of roles">
-    <span>role.roleName</span>
-  </li>
+<div class="container">
+  <ul class="roles-list">
+    <li *ngFor="let role of roles">
+      <div class="card list-item">
+        <div class="card-header">
+          Role id: {{role.id}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{role.name}}</h5>
+          <a class="btn btn-primary edit-button" (click)="router.navigate(['/admin/edit-role/' + role.name])">Edit</a>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

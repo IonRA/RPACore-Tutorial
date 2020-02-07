@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Role} from '../../model/role.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-interface',
@@ -8,16 +10,14 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AdminInterfaceComponent implements OnInit {
 
-  roles: Array<any>;
+  roles: Array<Role>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private router: Router) { }
 
   ngOnInit() {
-    this.httpClient.get<Array<any>>('https://localhost:44305/api/Administration')
-      .subscribe(result => {
-        this.roles = result;
-        console.log(this.roles);
-      });
+    this.httpClient.get<Array<Role>>('https://localhost:44305/api/Administration')
+      .subscribe(result => this.roles = result);
   }
 
 }

@@ -13,13 +13,23 @@ export class AppComponent {
   isLogged = false;
 
   loggedUser: User;
-  subscriptionUser;
 
   constructor(private router: Router,
               private userService: UserService) {
-    this.subscriptionUser = this.userService.execChange.subscribe((value) => {
-      this.loggedUser = value;
+    const storageUserString = sessionStorage.getItem('user');
+    if (!!storageUserString) {
+      const storageUser: User = JSON.parse(storageUserString);
+      this.loggedUser = storageUser;
       this.isLogged = true;
+      this.userService.userChange(storageUser);
+    }
+
+    this.userService.execChange.subscribe((value) => {
+      if (!!value) {
+        this.loggedUser = value;
+        this.isLogged = true;
+        sessionStorage.setItem('user', JSON.stringify(value));
+      }
     });
   }
 
