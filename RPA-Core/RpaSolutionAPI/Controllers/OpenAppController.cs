@@ -66,12 +66,12 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpGet("GetOpenApp")]
-        public async Task<IActionResult> GetOpenAppAsync(Expression<Func<OpenApp, bool>> expression)
+        public async Task<IActionResult> GetOpenAppAsync(Guid id)
         {
             //retrive OpenApp object from Db, if exists
             try
             {
-                var component = await _openAppManager.GetAsync(expression);
+                var component = await _openAppManager.GetAsync(x => x.ComponentId == id);
 
                 if (component == null)
                     return NotFound();

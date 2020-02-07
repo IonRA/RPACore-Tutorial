@@ -76,11 +76,11 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpGet("GetWriteApp")]
-        public async Task<IActionResult> GetCloseAppAsync(Expression<Func<WriteApp, bool>> expression)
+        public async Task<IActionResult> GetCloseAppAsync(Guid id)
         {
             try
             {
-                var component = await _writeAppManger.GetAsync(expression);
+                var component = await _writeAppManger.GetAsync(x => x.ComponentId == id);
 
                 if (component == null)
                 {
