@@ -1,0 +1,17 @@
+<div class="container">
+  <ul class="users-list">
+    <li *ngFor="let user of users">
+      <div class="card list-item" style="width: 500px; ">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">UserID: {{user.userId}}</li>
+          <li class="list-group-item">Username: {{user.userName}}</li>
+          <li class="list-group-item">
+            Has role:
+            <mat-checkbox style="margin: 0 20px;" [(ngModel)]="user.isSelected"></mat-checkbox>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <button style="margin: 0 20px;" mat-raised-button (click)="save()" color="primary">Save</button>
+</div>

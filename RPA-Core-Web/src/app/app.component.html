@@ -1,0 +1,47 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span style="cursor: pointer" (click)="router.navigate([''])">RPA Core</span>
+      <span class="example-fill-remaining-space"></span>
+      <span class="align-center"></span>
+      <span class="example-spacer"></span>
+      <button mat-button>About</button>
+      <button mat-button>Contact</button>
+
+      <div style="text-align: right; flex: 1 1 auto">
+        <button *ngIf="isLogged"
+                mat-button>
+          <mat-icon>account_circle</mat-icon>
+          <span>{{loggedUser.username}}</span>
+        </button>
+        <button *ngIf="!isLogged"
+                mat-button
+                (click)="router.navigate(['/login'])">
+          <span>Login</span>
+        </button>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button *ngIf="isLogged"
+                  mat-menu-item
+          (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+          <button *ngIf="!!loggedUser && loggedUser.roles.includes('Admin')"
+                  mat-menu-item
+                  (click)="router.navigate(['/admin'])">
+            <mat-icon>assignment</mat-icon>
+            <span>Admin</span>
+          </button>
+        </mat-menu>
+
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>
+
