@@ -2,7 +2,7 @@
 
 namespace Services.Rpa.Domain.Interfaces.IRepositories
 {
-    public interface ISolutionRepository: IBaseRepository<Solution>
+    public interface ISolutionRepository
     {
     }
 }

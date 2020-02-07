@@ -7,9 +7,9 @@ using Services.Rpa.MetadataDbContext;
 
 namespace Services.Rpa.Infrastructure.Repositories
 {
-    class SolutionRepository: BaseRepository<Solution>, ISolutionRepository
+    class SolutionRepository: ISolutionRepository
     {
-        public SolutionRepository(RpaContext rpaContext) : base(rpaContext)
+        public SolutionRepository(RpaContext rpaContext)
         { 
         }
     }

@@ -12,5 +12,6 @@ namespace Services.Rpa.Domain.Models
         public Process ComponentProcess { get; set; }
 
         public int PID { get; set; }
+
     }
 }

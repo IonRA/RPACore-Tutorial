@@ -8,18 +8,18 @@ using System.Linq;
 using Services.Rpa.MetadataDbContext;
 namespace Services.Rpa.Infrastructure.Managers
 {
-    public class SolutionManager: BaseManager<Solution, ISolutionRepository>, ISolutionManager
+    public class SolutionManager: ISolutionManager
     {
 
         public bool Ok;
-        public SolutionManager(ISolutionRepository solutionRepository) : base(solutionRepository)
+        public SolutionManager(ISolutionRepository solutionRepository)
         {
         }
 
-        public override async Task Execute(Solution solution)
+        public async Task Execute(Solution solution)
         {
             
-            var orderedComponents = solution.Components.OrderBy(c => c.position).ToList();
+            var orderedComponents = solution.Components.OrderBy(c => c.Position).ToList();
             RpaContext rpaCtxt = new RpaContext();
             OpenAppManager openMan = new OpenAppManager(new OpenAppRepository(rpaCtxt));
             WriteAppManager writeMan = new WriteAppManager(new WriteAppRepository(rpaCtxt));

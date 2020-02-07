@@ -13,5 +13,6 @@ namespace Services.Rpa.Domain.Models
         public string Title { get; set; }
 
         public string Path { get; set; }
+
     }
 }

@@ -101,11 +101,8 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteOpenApp")]
-        public async Task<IActionResult> DeleteOpenAppAsync(int id)
+        public async Task<IActionResult> DeleteOpenAppAsync(Guid id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid id");
-
             try
             {
                 await _openAppManager.DeleteAsync(id);

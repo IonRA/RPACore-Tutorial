@@ -6,13 +6,14 @@ namespace Services.Rpa.Domain.Models
 {
     abstract public class Component : IComponent
     {
-        public int Id { get; set; }
+        //public Guid Id { get; set; }
+        public Guid ComponentId { get; set; }
 
-        public int position { get; set; }
+        public int Position { get; set; }
 
-        public int SolutionID { get; set; }
+        public Guid SolutionID { get; set; }
 
-        public Solution Solution {get; set;}
+        public Solution Solution { get; set; }
 
 
     }

@@ -14,5 +14,6 @@ namespace Services.Rpa.Domain.Models
         public int PID { get; set; }
 
         public string Message { get; set; }
+
     }
 }

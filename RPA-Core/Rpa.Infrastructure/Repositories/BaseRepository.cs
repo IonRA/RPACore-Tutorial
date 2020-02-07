@@ -29,9 +29,9 @@ namespace Services.Rpa.Infrastructure.Repositories
             return result;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
-            var component = _rpaContext.Set<TEntity>().Where((c) => c.Id == id).FirstOrDefault();
+            var component = _rpaContext.Set<TEntity>().Where((c) => c.ComponentId == id).FirstOrDefault();
 
             _rpaContext.Remove<TEntity>(component);
 

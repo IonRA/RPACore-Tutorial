@@ -55,11 +55,8 @@ namespace RpaSolutionAPI.Controllers
         }
 
         [HttpDelete("DeleteCloseApp")]
-        public async Task<IActionResult> DeleteCloseAppAsync(int id)
+        public async Task<IActionResult> DeleteCloseAppAsync(Guid id)
         {
-            if (id <= 0)
-                return BadRequest("Not a valid id");
-
             try
             {
                 await _closeAppManager.DeleteAsync(id);

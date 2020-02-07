@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Migrations\20200207125433_RenameIds.cs" />
+    <Compile Remove="Migrations\20200207125433_RenameIds.Designer.cs" />
+    <Compile Remove="Migrations\20200207131015_RenameIds.cs" />
+    <Compile Remove="Migrations\20200207131015_RenameIds.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
