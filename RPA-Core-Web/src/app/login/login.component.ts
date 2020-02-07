@@ -31,16 +31,10 @@ export class LoginComponent implements OnInit {
       rememberMe: false,
     };
     // TODO httpClient interceptor
-    this.httpClient.post('https://localhost:44305/api/User', credentials)
+    this.httpClient.post<User>('https://localhost:44305/api/User', credentials)
       .toPromise()
       .then(response => {
-        console.log(response);
-        const user: User = {
-          id: null,
-          username: this.username,
-          roles: [],
-        };
-        this.userService.userChange(user);
+        this.userService.userChange(response);
         this.router.navigate(['']);
       })
       .catch(ex => {

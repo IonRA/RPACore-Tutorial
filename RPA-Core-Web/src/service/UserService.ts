@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {User} from '../model/user.model';
 
 @Injectable()
 export class UserService {
 
-  execChange: Subject<User> = new Subject<User>();
+  execChange: BehaviorSubject<User> = new BehaviorSubject <User>(null);
 
   constructor() {
   }

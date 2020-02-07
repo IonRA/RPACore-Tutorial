@@ -4,17 +4,14 @@ import {AdminInterfaceComponent} from './admin-interface/admin-interface.compone
 import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {RegisterComponent} from './register/register.component';
+import {UserRoleEditComponent} from './admin-interface/user-role-edit.component';
+import {AuthGuardService as AuthGuard} from '../service/AuthGuardService';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     data: {title: 'RPA Core'}
-  },
-  {
-    path: 'admin',
-    component: AdminInterfaceComponent,
-    data: {title: 'Admin Interface'}
   },
   {
     path: 'login',
@@ -25,6 +22,18 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     data: {title: 'Register'}
+  },
+  {
+    path: 'admin',
+    component: AdminInterfaceComponent,
+    data: {title: 'Admin Interface'},
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/edit-role/:roleName',
+    component: UserRoleEditComponent,
+    data: {title: 'Edit Roles Interface'},
+    canActivate: [AuthGuard]
   },
 ];
 
