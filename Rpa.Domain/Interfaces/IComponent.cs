@@ -9,7 +9,8 @@ namespace Services.Rpa.Domain.Interfaces
     {
         int Id { get; set; }
 
-        int IdSolution { get; set; }
+        int SolutionID { get; set; }
 
+        
     }
 }

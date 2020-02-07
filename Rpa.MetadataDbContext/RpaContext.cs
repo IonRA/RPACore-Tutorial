@@ -39,5 +39,7 @@ namespace Services.Rpa.MetadataDbContext
         public DbSet<SaveApp> SaveAppComponents { get; set; }
 
         public DbSet<CloseApp> CloseAppComponents { get; set; }
+
+        public DbSet<Solution> Solutions { get; set; }
     }
 }
